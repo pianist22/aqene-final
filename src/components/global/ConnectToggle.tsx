@@ -9,16 +9,13 @@ const contactSchema = z.object({
   name: z
     .string()
     .min(1, "Name is required")
-    .min(2, "Name must be at least 2 characters"),
-
+    ,
   phone: z
     .string()
-    .min(1, "Phone number is required")
-    .regex(/^[0-9+\-\s()]{7,15}$/, "Invalid phone number"),
-
+    .optional(),
   email: z
     .string()
-    .optional()
+    .min(2,"Email is Required")
     .refine(
       (val) => !val || z.string().email().safeParse(val).success,
       {
@@ -109,8 +106,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   // ZOD VALIDATION
   const result = contactSchema.safeParse({
     name,
-    phone,
-    email: email || undefined,
+    phone: phone || undefined,
+    email: email,
     details,
   });
 
@@ -302,21 +299,21 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           >
             <input
               name="name"
-              placeholder="Name*"
+              placeholder="Name *"
               required
               className="connect-input w-full text-sm sm:text-base py-3 sm:py-3.5 md:py-4"
             />
 
             <input
               name="phone"
-              placeholder="Phone Number*"
+              placeholder="Phone Number (Optional)"
               required
               className="connect-input w-full text-sm sm:text-base py-3 sm:py-3.5 md:py-4"
             />
 
             <input
               name="email"
-              placeholder="Email (Optional)"
+              placeholder="Email *"
               className="connect-input w-full text-sm sm:text-base py-3 sm:py-3.5 md:py-4"
             />
 

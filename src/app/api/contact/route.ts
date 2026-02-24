@@ -53,7 +53,7 @@ export async function POST(req: Request) {
   try {
     const { name, phone, email, details } = await req.json();
 
-    if (!name || !phone) {
+    if (!name || !email) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
