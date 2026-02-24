@@ -1,3 +1,35 @@
+// import type { Metadata } from 'next'
+// import './globals.css'
+// import Providers from './providers'
+// import Hero from '@/components/hero'
+// import WhyArchitectsChooseUs from '@/components/whychooseus'
+// import CraftsmanshipSection from '@/components/craftmanship'
+// export const metadata: Metadata = {
+//   title: 'ARQUENE - Luxury Furniture',
+// }
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode
+// }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <Providers />
+//         <Hero />
+//         <WhyArchitectsChooseUs />
+//         <CraftsmanshipSection />
+//         {children}
+//       </body>
+//     </html>
+//   )
+// }
+// app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
+import Providers from "./providers";
+import { LenisProvider } from "@/components/lenisProvider";
 import type { Metadata } from 'next'
 import './globals.css'
 import Providers from './providers'
@@ -16,18 +48,20 @@ const font = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'ARQUENE - Luxury Furniture',
-}
+  title: "ARQUENE - Luxury Furniture",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" className={font.variable}>
       <body>
+        {/* If Providers is a context wrapper, it should wrap children */}
         <Providers />
+          <LenisProvider>{children}</LenisProvider> 
         {/* INTRO LOADER */}
         <RouteLoader />
 
@@ -43,5 +77,5 @@ export default function RootLayout({
         />
       </body>
     </html>
-  )
+  );
 }
