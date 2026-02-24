@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -41,12 +42,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
 :root {
+  --font-primary: var(--font-montserrat);
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
@@ -76,6 +79,8 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
 }
 
 .dark {
@@ -111,7 +116,6 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
-
 
 @layer utilities {
   /* Arquene luxury color helpers (map to your existing system if needed) */
@@ -220,7 +224,6 @@
   }
 }
 
-
 /* ---------- Hamburger (checkbox toggler) ---------- */
 
 .checkboxWrapper {
@@ -281,3 +284,41 @@
   transform-origin: left;
 }
 
+/* globals.css */
+.admin-input {
+  @apply
+    border
+    border-gray-300
+    rounded-lg
+    px-4
+    py-2.5
+    focus:outline-none
+    focus:ring-2
+    focus:ring-black
+    text-sm;
+}
+
+.connect-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.connect-input:focus {
+  border-color: #000;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
