@@ -382,42 +382,42 @@ const PROJECTS = [
   {
     id: "01",
     name: "Eclectic Minimalism",
-    tag: "High-Rise Residence",
+    // tag: "High-Rise Residence",
     image: "/projects/lobby.jpg",
     href: "/projects/eclectic-minimalism",
   },
   {
     id: "02",
     name: "Modern Classic",
-    tag: "Private Penthouse",
+    // tag: "Private Penthouse",
     image: "/projects/penthouse.jpg",
     href: "/projects/modern_classic",
   },
   {
     id: "03",
     name: "Modern Artistry",
-    tag: "Cultural Space",
+    // tag: "Cultural Space",
     image: "/projects/gallery.jpg",
     href: "/projects/modernartisry",
   },
   {
     id: "04",
     name: "Modern Contemporary",
-    tag: "Luxury Villa",
+    // tag: "Luxury Villa",
     image: "/projects/villa.jpg",
     href: "/projects/moderncontemporary",
   },
   {
     id: "05",
     name: "Neo Modern Classic",
-    tag: "Corporate HQ",
+    // tag: "Corporate HQ",
     image: "/projects/atrium.jpg",
     href: "/projects/neomodernclassic",
   },
   {
     id: "06",
     name: "Classic Contemporary",
-    tag: "Classic Contemporary",
+    // tag: "Classic Contemporary",
     image: "/projects/classiccontempoeary.jpg",
     href: "/projects/classiccontemporary",
   },
@@ -550,9 +550,9 @@ export default function ProjectsSection() {
               </div>
 
               <div className="mt-6 text-center space-y-1">
-                <p className="text-[11px] tracking-[0.2em] uppercase text-[#7a7165]">
+                {/* <p className="text-[11px] tracking-[0.2em] uppercase text-[#7a7165]">
                   {project.tag}
-                </p>
+                </p> */}
                 <p className="text-lg italic text-[#3b342c]">
                   {project.name}
                 </p>

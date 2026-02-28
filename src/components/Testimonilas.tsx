@@ -209,10 +209,7 @@ export default function TestimonialsSection() {
             <span className="text-[#c1171a]">Sha</span>
             <span className="text-[#2f2a25]">ब्द</span>
           </h2>
-          <p className="mt-6 text-sm md:text-base lg:text-lg text-[#7a7165] max-w-3xl mx-auto leading-relaxed">
-            Quiet acknowledgements from architects, designers, and patrons who
-            trust what leaves our <span className="text-[#c1171a]">का</span>rkhana.
-          </p>
+         
         </div>
 
         {/* Cards grid */}
