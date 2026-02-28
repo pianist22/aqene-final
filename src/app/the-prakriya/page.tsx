@@ -332,10 +332,6 @@ export default function ThePrakriyaPage() {
             <span className="text-[#c1171a]">प्र</span>
             <span className="text-[#2f2a25]">kriya</span>
           </h1>
-          <p className="mt-5 text-base md:text-lg text-[#7a7165] max-w-2xl mx-auto leading-relaxed">
-            A meticulous, end‑to‑end process that protects your design intent
-            while delivering execution at atelier standards.
-          </p>
         </header>
 
         {/* Steps */}
@@ -398,9 +394,6 @@ export default function ThePrakriyaPage() {
           })}
         </section>
 
-        <p className="mt-12 text-[11px] text-center tracking-[0.18em] uppercase text-[#a19b8f]">
-          *Timelines are indicative and may vary by scope and site conditions.
-        </p>
       </div>
     </main>
   );
