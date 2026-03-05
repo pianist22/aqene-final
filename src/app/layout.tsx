@@ -89,7 +89,7 @@ import { ImageKitProvider } from "@imagekit/next";
 import WhatsAppButton from "@/components/global/WhatsappButton";
 import ConnectToggle from "@/components/global/ConnectToggle";
 import RouteLoader from "@/components/global/RouteLoader";
-
+import Footer from "@/components/footer";
 const font = Montserrat({
   subsets: ["latin"],
   weight: ["200", "300", "400"],
@@ -124,6 +124,7 @@ export default function RootLayout({
             </LenisProvider>
           </ImageKitProvider>
         </Providers>
+        <Footer/>
       </body>
     </html>
   );
