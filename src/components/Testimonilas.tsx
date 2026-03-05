@@ -799,11 +799,11 @@ export default function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 bg-[#f4f4f2] overflow-hidden"
+      className="py-24 bg-[#f4f4f2] overflow-hidden font-futura"
     >
       {/* Heading */}
       <div className="max-w-7xl mx-auto px-6 md:px-16 mb-16">
-        <h2 className="font-serif italic text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.08em] text-[#2f2a25]">
+        <h2 className=" text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.08em] text-[#2f2a25]">
           The <span className="text-[#c1171a]">Sha</span>ब्द
         </h2>
       </div>
@@ -847,7 +847,7 @@ export default function TestimonialsSection() {
                     {t.id}
                   </p>
 
-                  <p className="text-base lg:text-md leading-relaxed text-[#3b342c] font-serif">
+                  <p className="text-base lg:text-md leading-relaxed text-[#3b342c] ">
                     “{t.quote}”
                   </p>
                 </div>
@@ -855,10 +855,10 @@ export default function TestimonialsSection() {
                 <div>
                   <div className="h-px bg-[#d8d5d2] my-2"></div>
 
-                  <p className="font-semibold font-serif text-[#2f2720] text-lg">
+                  <p className="font-semibold text-[#2f2720] text-lg">
                     {t.author}
                   </p>
-                  <p className="text-xs uppercase font-serif tracking-[0.25em] text-[#7a7165] mt-1">
+                  <p className="text-xs uppercase tracking-[0.25em] text-[#7a7165] mt-1">
                     {t.location}
                   </p>
                 </div>

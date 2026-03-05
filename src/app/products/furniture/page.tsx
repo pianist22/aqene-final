@@ -1,38 +1,7 @@
 import prisma from "@/lib/prisma";
 import CategoryTabs from "@/components/CategoryTabs";
 import Link from "next/link";
-
-
-// export default async function FurniturePage() {
-//   const categories = await prisma.category.findMany({
-//     orderBy: { name: "asc" },
-//   });
-
-//   return (
-//     <main className="bg-[#f6f6f4] min-h-screen">
-//       <div className="px-6 md:px-16 pt-20 pb-10">
-//         <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#8c8c8c]">
-//           <Link
-//             href="/products"
-//             className="hover:text-[#873807] hover:underline transition-colors duration-300"
-//             >
-//             Products
-//           </Link>
-
-//           <span>/</span>
-//           <span className="text-[#3a3a3a]">
-//             Furniture
-//           </span>
-//         </div>
-//         <h1 className="text-3xl md:text-4xl font-futura uppercase tracking-wide text-[#2e2e2e]">
-//           Furniture
-//         </h1>
-//       </div>
-
-//       <CategoryTabs categories={categories} />
-//     </main>
-//   );
-// }
+export const dynamic = "force-dynamic";
 
 export default async function FurniturePage() {
   const categories = await prisma.category.findMany({

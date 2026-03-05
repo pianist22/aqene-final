@@ -3,6 +3,7 @@ import axios from "axios";
 import IKImage from "@/components/IkImage";
 import { productSections } from "@/config/productSection";
 
+export const dynamic = "force-dynamic";
 async function getHomeImages() {
   const data = await Promise.all(
     productSections.map(async section => {

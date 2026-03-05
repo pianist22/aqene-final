@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
+export const dynamic = "force-dynamic";
+
 
 async function getProduct(id: string) {
   const res = await fetch(
@@ -21,7 +23,7 @@ export default async function ProductPage({
   const { productId } = await params;
 
   const product = await getProduct(productId);
-  console.log("Product", product);
+  // console.log("Product", product);
   if (!product) notFound();
 
   return (

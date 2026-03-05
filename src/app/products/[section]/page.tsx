@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { notFound } from "next/navigation";
 import axios from "axios";
 import { productSections } from "@/config/productSection";
