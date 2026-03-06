@@ -294,17 +294,197 @@
 
 
 
+// 'use client'
+
+// import { useState, useMemo, useEffect } from 'react'
+// import { motion, AnimatePresence } from 'framer-motion'
+// import Image from 'next/image'
+// import Link from 'next/link'
+// import { usePathname } from 'next/navigation'
+// import { menuItems } from '@/lib/menuData'
+// import type { MenuItem } from '@/types/menu'
+
+
+
+// interface MenuOverlayProps {
+//   onClose: () => void
+// }
+
+// export default function MenuOverlay({ onClose }: MenuOverlayProps) {
+//   const [hoveredId, setHoveredId] = useState<string | null>(null)
+//   const pathname = usePathname()
+
+//   useEffect(() => {
+//     onClose()
+//   }, [pathname])
+
+//   const activeItem = useMemo<MenuItem | null>(() => {
+//     return menuItems.find(item => item.id === hoveredId) ?? null
+//   }, [hoveredId])
+
+//   const leftItems = menuItems.slice(0, 3)
+//   const rightItems = menuItems.slice(3)
+
+//   return (
+//     <motion.div
+//       className="fixed inset-0 z-90 flex"
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       exit={{ opacity: 0 }}
+//     >
+//       {/* ================= LEFT PANEL ================= */}
+//       <motion.div
+//         className="
+//           w-full md:w-1/2 h-full
+//           bg-[#d8d6cf]
+//           px-4 md:px-12
+//           pt-32 md:py-12
+//           flex items-start md:items-center
+//         "
+//         initial={{ y: '-100%' }}
+//         animate={{ y: 0 }}
+//         exit={{ y: '100%' }}
+//         transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
+//       >
+//         {/* ---------------- MOBILE LAYOUT ---------------- */}
+//         <div className="w-full md:hidden">
+//           <ul className="space-y-4">
+//             {menuItems.map((item, index) => {
+//               const isActive = hoveredId === item.id
+//               const offset = index * 6 // stronger diagonal effect
+
+//               return (
+//                 <li
+//                   key={item.id}
+//                   style={{ marginLeft: offset }}
+//                   className="leading-none"
+//                 >
+//                   <Link
+//                     href={item.href}
+//                     onMouseEnter={() => setHoveredId(item.id)}
+//                     onMouseLeave={() => setHoveredId(null)}
+//                     className="block"
+//                   >
+//                     <motion.span
+//                       className={`
+//                         inline-block
+//                         text-black
+//                         text-[20px]
+//                         font-serif
+//                         tracking-tight
+//                       `}
+//                       animate={{ x: isActive ? 12 : 0 }}
+//                       transition={{ duration: 0.25 }}
+//                     >
+//                       {item.label}
+//                     </motion.span>
+//                   </Link>
+//                 </li>
+//               )
+//             })}
+//           </ul>
+//         </div>
+
+//         {/* ---------------- DESKTOP LAYOUT (UNCHANGED) ---------------- */}
+//         <div className="hidden md:grid w-full grid-cols-2 gap-y-12 gap-x-28">
+//           {[leftItems, rightItems].map((group, groupIndex) => (
+//             <ul key={groupIndex} className="space-y-6">
+//               {group.map((item, index) => {
+//                 const isActive = hoveredId === item.id
+//                 const offset = index * 4
+
+//                 return (
+//                   <li
+//                     key={item.id}
+//                     style={{ marginLeft: offset }}
+//                     className="leading-none"
+//                   >
+//                     <Link
+//                       href={item.href}
+//                       onMouseEnter={() => setHoveredId(item.id)}
+//                       onMouseLeave={() => setHoveredId(null)}
+//                     >
+//                       <motion.span
+//                         className={`
+//                           inline-flex items-baseline
+//                           cursor-pointer select-none
+//                           text-black
+//                         `}
+//                         animate={{ x: isActive ? 10 : 0 }}
+//                         transition={{ duration: 0.25 }}
+//                       >
+//                         <span className="text-[22px] tracking-tight font-normal md:text-[32px]">
+//                           {item.label.charAt(0)}
+//                         </span>
+//                         <span className="text-[20px] tracking-tight font-normal md:text-[28px]">
+//                           {item.label.slice(1)}
+//                         </span>
+//                       </motion.span>
+//                     </Link>
+//                   </li>
+//                 )
+//               })}
+//             </ul>
+//           ))}
+//         </div>
+//       </motion.div>
+
+//       {/* ================= RIGHT PANEL (UNCHANGED) ================= */}
+//       <motion.div
+//         className="
+//           hidden md:flex
+//           w-1/2 h-full
+//           bg-white/60
+//           backdrop-blur-xl
+//           relative overflow-hidden
+//         "
+//         initial={{ y: '100%' }}
+//         animate={{ y: 0 }}
+//         exit={{ y: '-100%' }}
+//         transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
+//       >
+//         <AnimatePresence mode="wait">
+//           {activeItem && (
+//             <motion.div
+//               key={activeItem.image}
+//               className="absolute inset-0"
+//               initial={{ opacity: 0 }}
+//               animate={{ opacity: 1 }}
+//               exit={{ opacity: 0 }}
+//               transition={{ duration: 0.35 }}
+//             >
+//               <motion.div
+//                 className="absolute inset-0"
+//                 initial={{ scale: 1 }}
+//                 animate={{ scale: 1.06 }}
+//                 transition={{ duration: 6, ease: 'linear' }}
+//               >
+//                 <Image
+//                   src={activeItem.image}
+//                   alt={activeItem.label}
+//                   fill
+//                   sizes="50vw"
+//                   className="object-cover"
+//                 />
+//               </motion.div>
+//             </motion.div>
+//           )}
+//         </AnimatePresence>
+//       </motion.div>
+//     </motion.div>
+//   )
+// }
+
+
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { menuItems } from '@/lib/menuData'
 import type { MenuItem } from '@/types/menu'
-
-
 
 interface MenuOverlayProps {
   onClose: () => void
@@ -313,10 +493,14 @@ interface MenuOverlayProps {
 export default function MenuOverlay({ onClose }: MenuOverlayProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const pathname = usePathname()
+  const prevPath = useRef(pathname)
 
   useEffect(() => {
-    onClose()
-  }, [pathname])
+    if (prevPath.current !== pathname) {
+      onClose()
+    }
+    prevPath.current = pathname
+  }, [pathname, onClose])
 
   const activeItem = useMemo<MenuItem | null>(() => {
     return menuItems.find(item => item.id === hoveredId) ?? null
@@ -327,36 +511,33 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-90 flex"
+      className="fixed inset-0 z-[90] flex"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
     >
-      {/* ================= LEFT PANEL ================= */}
+
+      {/* LEFT PANEL */}
       <motion.div
-        className="
-          w-full md:w-1/2 h-full
-          bg-[#d8d6cf]
-          px-4 md:px-12
-          pt-32 md:py-12
-          flex items-start md:items-center
-        "
+        className="w-full md:w-1/2 h-full bg-[#d8d6cf] px-4 md:px-12 pt-32 md:py-12 flex items-start md:items-center"
         initial={{ y: '-100%' }}
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
-        transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
+        transition={{ duration: 0.35 }}
       >
-        {/* ---------------- MOBILE LAYOUT ---------------- */}
+
+        {/* MOBILE */}
         <div className="w-full md:hidden">
           <ul className="space-y-4">
             {menuItems.map((item, index) => {
               const isActive = hoveredId === item.id
-              const offset = index * 6 // stronger diagonal effect
+              const offset = index * 6
 
               return (
                 <li
                   key={item.id}
-                  style={{ marginLeft: offset }}
+                  style={{ transform: `translateX(${offset}px)` }}
                   className="leading-none"
                 >
                   <Link
@@ -366,15 +547,9 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
                     className="block"
                   >
                     <motion.span
-                      className={`
-                        inline-block
-                        text-black
-                        text-[20px]
-                        font-serif
-                        tracking-tight
-                      `}
+                      className="inline-block text-black text-[20px] font-serif tracking-tight"
                       animate={{ x: isActive ? 12 : 0 }}
-                      transition={{ duration: 0.25 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {item.label}
                     </motion.span>
@@ -385,7 +560,7 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
           </ul>
         </div>
 
-        {/* ---------------- DESKTOP LAYOUT (UNCHANGED) ---------------- */}
+        {/* DESKTOP */}
         <div className="hidden md:grid w-full grid-cols-2 gap-y-12 gap-x-28">
           {[leftItems, rightItems].map((group, groupIndex) => (
             <ul key={groupIndex} className="space-y-6">
@@ -396,7 +571,7 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
                 return (
                   <li
                     key={item.id}
-                    style={{ marginLeft: offset }}
+                    style={{ transform: `translateX(${offset}px)` }}
                     className="leading-none"
                   >
                     <Link
@@ -405,18 +580,14 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
                       onMouseLeave={() => setHoveredId(null)}
                     >
                       <motion.span
-                        className={`
-                          inline-flex items-baseline
-                          cursor-pointer select-none
-                          text-black
-                        `}
+                        className="inline-flex items-baseline cursor-pointer select-none text-black"
                         animate={{ x: isActive ? 10 : 0 }}
-                        transition={{ duration: 0.25 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <span className="text-[22px] tracking-tight font-normal md:text-[32px]">
+                        <span className="text-[22px] md:text-[32px]">
                           {item.label.charAt(0)}
                         </span>
-                        <span className="text-[20px] tracking-tight font-normal md:text-[28px]">
+                        <span className="text-[20px] md:text-[28px]">
                           {item.label.slice(1)}
                         </span>
                       </motion.span>
@@ -427,21 +598,16 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
             </ul>
           ))}
         </div>
+
       </motion.div>
 
-      {/* ================= RIGHT PANEL (UNCHANGED) ================= */}
+      {/* RIGHT PANEL */}
       <motion.div
-        className="
-          hidden md:flex
-          w-1/2 h-full
-          bg-white/60
-          backdrop-blur-xl
-          relative overflow-hidden
-        "
+        className="hidden md:flex w-1/2 h-full bg-white/60 backdrop-blur-xl relative overflow-hidden"
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
         exit={{ y: '-100%' }}
-        transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
+        transition={{ duration: 0.35 }}
       >
         <AnimatePresence mode="wait">
           {activeItem && (
@@ -451,26 +617,20 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.25 }}
             >
-              <motion.div
-                className="absolute inset-0"
-                initial={{ scale: 1 }}
-                animate={{ scale: 1.06 }}
-                transition={{ duration: 6, ease: 'linear' }}
-              >
-                <Image
-                  src={activeItem.image}
-                  alt={activeItem.label}
-                  fill
-                  sizes="50vw"
-                  className="object-cover"
-                />
-              </motion.div>
+              <Image
+                src={activeItem.image}
+                alt={activeItem.label}
+                fill
+                sizes="50vw"
+                className="object-cover"
+              />
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
+
     </motion.div>
   )
 }

@@ -361,6 +361,103 @@
 //   );
 // }
 
+
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { usePathname } from "next/navigation";
+// import { AnimatePresence, motion } from "framer-motion";
+// import Image from "next/image";
+
+// const NAVBAR_HEIGHT = 72;
+
+// export default function RouteLoader() {
+//   const pathname = usePathname();
+//   const isHome = pathname === "/";
+
+//   // Show immediately if home (prevents jerk)
+//   const [visible, setVisible] = useState(isHome);
+//   const [logoPhase, setLogoPhase] = useState<"show" | "hide">("show");
+//   const [collapse, setCollapse] = useState(false);
+
+//   useEffect(() => {
+//     // If not home → never show
+//     if (!isHome) {
+//       setVisible(false);
+//       return;
+//     }
+
+//     // Reset animation state
+//     setLogoPhase("show");
+//     setCollapse(false);
+//     setVisible(true);
+
+//     const logoDisplay = setTimeout(() => {
+//       setLogoPhase("hide");
+//     }, 1800);
+
+//     const collapseTimer = setTimeout(() => {
+//       setCollapse(true);
+//     }, 2600);
+
+//     const removeTimer = setTimeout(() => {
+//       setVisible(false);
+//     }, 3600);
+
+//     return () => {
+//       clearTimeout(logoDisplay);
+//       clearTimeout(collapseTimer);
+//       clearTimeout(removeTimer);
+//     };
+//   }, [isHome]);
+
+//   // ✅ Do not render at all if not home
+//   if (!isHome) return null;
+
+//   return (
+//     <AnimatePresence>
+//       {visible && (
+//         <motion.div
+//           className="fixed inset-0 z-[110] bg-black/5 backdrop-blur-xl"
+//           initial={{ height: "100vh" }}
+//           animate={{
+//             height: collapse ? NAVBAR_HEIGHT : "100vh",
+//           }}
+//           transition={{
+//             duration: 1.1,
+//             ease: [0.23, 1, 0.32, 1],
+//           }}
+//         >
+//           {/* CENTERED LOGO */}
+//           <motion.div
+//             className="absolute inset-0 flex items-center justify-center"
+//             initial={{ scale: 3.8, opacity: 1 }}
+//             animate={{
+//               scale: logoPhase === "show" ? 2.2 : 0.5,
+//               opacity: logoPhase === "show" ? 1 : 0,
+//             }}
+//             transition={{
+//               duration: 1.6,
+//               ease: [0.23, 1, 0.32, 1],
+//             }}
+//           >
+//             <Image
+//               src="/Arqene_Logo_White.png"
+//               alt="Arqene"
+//               width={600}
+//               height={240}
+//               priority
+//               className="h-32 md:h-40 w-auto select-none"
+//             />
+//           </motion.div>
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   );
+// }
+
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -374,19 +471,16 @@ export default function RouteLoader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // ✅ Show immediately if home (prevents jerk)
   const [visible, setVisible] = useState(isHome);
   const [logoPhase, setLogoPhase] = useState<"show" | "hide">("show");
   const [collapse, setCollapse] = useState(false);
 
   useEffect(() => {
-    // ❌ If not home → never show
     if (!isHome) {
       setVisible(false);
       return;
     }
 
-    // Reset animation state
     setLogoPhase("show");
     setCollapse(false);
     setVisible(true);
@@ -410,14 +504,13 @@ export default function RouteLoader() {
     };
   }, [isHome]);
 
-  // ✅ Do not render at all if not home
   if (!isHome) return null;
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[110] bg-black/5 backdrop-blur-xl"
+          className="fixed inset-0 z-[110] bg-black/5 backdrop-blur-xl overflow-hidden"
           initial={{ height: "100vh" }}
           animate={{
             height: collapse ? NAVBAR_HEIGHT : "100vh",
@@ -429,10 +522,10 @@ export default function RouteLoader() {
         >
           {/* CENTERED LOGO */}
           <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            initial={{ scale: 3.8, opacity: 1 }}
+            className="absolute inset-0 flex items-center justify-center px-6"
+            initial={{ scale: 2.8, opacity: 1 }}
             animate={{
-              scale: logoPhase === "show" ? 2.2 : 0.5,
+              scale: logoPhase === "show" ? 1.6 : 0.5,
               opacity: logoPhase === "show" ? 1 : 0,
             }}
             transition={{
@@ -440,14 +533,16 @@ export default function RouteLoader() {
               ease: [0.23, 1, 0.32, 1],
             }}
           >
-            <Image
-              src="/Arqene_Logo_White.png"
-              alt="Arqene"
-              width={600}
-              height={240}
-              priority
-              className="h-32 md:h-40 w-auto select-none"
-            />
+            <div className="relative w-[70vw] max-w-[520px] aspect-[5/2]">
+              <Image
+                src="/Arqene_Logo_White.png"
+                alt="Arqene"
+                fill
+                priority
+                sizes="(max-width: 768px) 70vw, 520px"
+                className="object-contain select-none"
+              />
+            </div>
           </motion.div>
         </motion.div>
       )}
