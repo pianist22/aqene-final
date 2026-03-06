@@ -281,6 +281,125 @@
 //   )
 // }
 
+
+
+
+// 'use client'
+
+// import { useState, useEffect } from 'react'
+// import { motion, AnimatePresence } from 'framer-motion'
+// import Link from 'next/link'
+// import Image from 'next/image'
+// import { usePathname } from 'next/navigation'
+
+// import Hamburger from '@/components/Hamburger/Hamburger'
+// import MenuOverlay from '@/components/MenuOverlay/MenuOverlay'
+// import useScrollEffect from '@/hooks/useScrollEffect'
+
+// export default function Navbar() {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false)
+//   const [isHovered, setIsHovered] = useState(false)
+//   const isScrolled = useScrollEffect(40)
+//   const pathname = usePathname()
+
+//   const isHome = pathname === '/'
+
+//   const toggleMenu = () => {
+//     setIsMenuOpen(prev => !prev)
+//   }
+
+//   useEffect(() => {
+//     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto'
+//     return () => {
+//       document.body.style.overflow = 'auto'
+//     }
+//   }, [isMenuOpen])
+
+//   // ---------------- NAVBAR VISUAL LOGIC ----------------
+
+//   const navbarStyle = (() => {
+//     if (isMenuOpen) return 'bg-white'
+
+//     if (isScrolled) {
+//       return 'bg-black/75 backdrop-blur-xs transition-all'
+//     }
+
+//     if (isHome) {
+//       return isHovered ? 'bg-white transition-all' : 'bg-transparent transition-all'
+//     }
+
+//     return 'bg-white'
+//   })()
+
+//   const isLightMode = (() => {
+//     if (isMenuOpen) return true
+//     if (isScrolled) return false
+
+//     if (isHome) {
+//       return isHovered
+//     }
+
+//     return true
+//   })()
+
+//   return (
+//     <>
+//       {/* ================= NAVBAR ================= */}
+//       <motion.div
+//         onMouseEnter={() => isHome && setIsHovered(true)}
+//         onMouseLeave={() => isHome && setIsHovered(false)}
+//         className={`
+//           fixed top-0 left-0 w-full
+//           z-[100]   // ALWAYS above overlay & loader
+//           flex items-center justify-between
+//           px-8 md:px-12 lg:px-16
+//           transition-all duration-500
+//           ${isScrolled ? 'h-20' : 'h-18'}
+//           ${navbarStyle}
+//         `}
+//       >
+//         {/* LOGO */}
+//         <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+//           <motion.div
+//             whileHover={{ scale: 1.02 }}
+//             whileTap={{ scale: 0.98 }}
+//             className="cursor-pointer transition-all duration-500"
+//           >
+//             <Image
+//               src={
+//                 isLightMode
+//                   ? '/Arqene_Logo_Dark.png'
+//                   : '/Arqene_Logo_White.png'
+//               }
+//               alt="Arqene Luxury Furniture"
+//               width={isScrolled ? 138 : 156}
+//               height={52}
+//               priority
+//               className="object-contain select-none transition-all duration-500"
+//             />
+//           </motion.div>
+//         </Link>
+
+//         {/* HAMBURGER */}
+//         <div className="ml-auto">
+//           <Hamburger
+//             isOpen={isMenuOpen}
+//             onToggle={toggleMenu}
+//             isLightMode={isLightMode}
+//           />
+//         </div>
+//       </motion.div>
+
+//       {/* ================= MENU OVERLAY ================= */}
+//       <AnimatePresence mode="wait" initial={false}>
+//         {isMenuOpen && (
+//           <MenuOverlay onClose={toggleMenu} />
+//         )}
+//       </AnimatePresence>
+//     </>
+//   )
+// }
+
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -296,6 +415,7 @@ import useScrollEffect from '@/hooks/useScrollEffect'
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+
   const isScrolled = useScrollEffect(40)
   const pathname = usePathname()
 
@@ -306,23 +426,19 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto'
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
   }, [isMenuOpen])
-
-  // ---------------- NAVBAR VISUAL LOGIC ----------------
 
   const navbarStyle = (() => {
     if (isMenuOpen) return 'bg-white'
 
-    if (isScrolled) {
-      return 'bg-black/75 backdrop-blur-xs transition-all'
-    }
+    if (isScrolled)
+      return 'bg-black/75 backdrop-blur-md transition-all'
 
     if (isHome) {
-      return isHovered ? 'bg-white transition-all' : 'bg-transparent transition-all'
+      return isHovered
+        ? 'bg-white transition-all'
+        : 'bg-transparent transition-all'
     }
 
     return 'bg-white'
@@ -332,36 +448,22 @@ export default function Navbar() {
     if (isMenuOpen) return true
     if (isScrolled) return false
 
-    if (isHome) {
-      return isHovered
-    }
+    if (isHome) return isHovered
 
     return true
   })()
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
       <motion.div
         onMouseEnter={() => isHome && setIsHovered(true)}
         onMouseLeave={() => isHome && setIsHovered(false)}
-        className={`
-          fixed top-0 left-0 w-full
-          z-[100]   // ALWAYS above overlay & loader
-          flex items-center justify-between
-          px-8 md:px-12 lg:px-16
-          transition-all duration-500
-          ${isScrolled ? 'h-20' : 'h-18'}
-          ${navbarStyle}
-        `}
+        className={`fixed top-0 left-0 w-full z-[100] flex items-center justify-between px-8 md:px-12 lg:px-16 transition-all duration-500 ${
+          isScrolled ? 'h-20' : 'h-18'
+        } ${navbarStyle}`}
       >
-        {/* LOGO */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="cursor-pointer transition-all duration-500"
-          >
+          <motion.div whileHover={{ scale: 1.02 }}>
             <Image
               src={
                 isLightMode
@@ -372,12 +474,11 @@ export default function Navbar() {
               width={isScrolled ? 138 : 156}
               height={52}
               priority
-              className="object-contain select-none transition-all duration-500"
+              className="object-contain select-none"
             />
           </motion.div>
         </Link>
 
-        {/* HAMBURGER */}
         <div className="ml-auto">
           <Hamburger
             isOpen={isMenuOpen}
@@ -387,11 +488,8 @@ export default function Navbar() {
         </div>
       </motion.div>
 
-      {/* ================= MENU OVERLAY ================= */}
-      <AnimatePresence mode="wait" initial={false}>
-        {isMenuOpen && (
-          <MenuOverlay onClose={toggleMenu} />
-        )}
+      <AnimatePresence mode="wait">
+        {isMenuOpen && <MenuOverlay onClose={toggleMenu} />}
       </AnimatePresence>
     </>
   )

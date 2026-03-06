@@ -64,7 +64,7 @@
 }  */
 
 
-.wrapper {
+/* .wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,10 +76,56 @@
 
 .label {
   cursor: pointer;
+} */
+
+/* .lines {
+  width: 2rem;        
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: all 300ms ease;
+} */
+
+/* .lines span {
+  height: 2px;
+  border-radius: 999px;
+  transition: all 400ms ease;
+} */
+
+/* Light Mode (white navbar → dark icon) */
+/* .light span {
+  background: rgba(15, 15, 18, 0.9);
+} */
+
+/* Dark Mode (transparent or black bg → white icon) */
+/* .dark span {
+  background: white;
+} */
+
+/* Cross animation */
+/* .input:checked + .label .lines span:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+} */
+
+/* .input:checked + .label .lines span:nth-child(2) {
+  opacity: 0;
+}
+
+.input:checked + .label .lines span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-12px) translateX(5px);
+} */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
 
 .lines {
-  width: 2rem;          /* smaller width */
+  width: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -92,25 +138,24 @@
   transition: all 400ms ease;
 }
 
-/* Light Mode (white navbar → dark icon) */
 .light span {
   background: rgba(15, 15, 18, 0.9);
 }
 
-/* Dark Mode (transparent or black bg → white icon) */
 .dark span {
   background: white;
 }
 
-/* Cross animation */
-.input:checked + .label .lines span:nth-child(1) {
+/* open animation */
+
+.open span:nth-child(1) {
   transform: rotate(45deg) translateY(6px);
 }
 
-.input:checked + .label .lines span:nth-child(2) {
+.open span:nth-child(2) {
   opacity: 0;
 }
 
-.input:checked + .label .lines span:nth-child(3) {
+.open span:nth-child(3) {
   transform: rotate(-45deg) translateY(-12px) translateX(5px);
 }

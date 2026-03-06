@@ -41,9 +41,53 @@
 //   )
 // }
 
+// 'use client'
+
+// import { useId } from 'react'
+// import styles from './Hamburger.module.css'
+
+// interface HamburgerProps {
+//   isOpen: boolean
+//   onToggle: () => void
+//   isLightMode: boolean
+// }
+
+// export default function Hamburger({
+//   isOpen,
+//   onToggle,
+//   isLightMode,
+// }: HamburgerProps) {
+//   const uid = useId()
+//   const inputId = `nav-toggle-${uid}`
+
+//   const variantClass = isLightMode
+//     ? styles.light
+//     : styles.dark
+
+//   return (
+//     <div className={styles.wrapper}>
+//       <input
+//         id={inputId}
+//         type="checkbox"
+//         checked={isOpen}
+//         onChange={onToggle}
+//         className={styles.input}
+//       />
+
+//       <label htmlFor={inputId} className={styles.label}>
+//         <div className={`${styles.lines} ${variantClass}`}>
+//           <span />
+//           <span />
+//           <span />
+//         </div>
+//       </label>
+//     </div>
+//   )
+// }
+
+
 'use client'
 
-import { useId } from 'react'
 import styles from './Hamburger.module.css'
 
 interface HamburgerProps {
@@ -57,30 +101,25 @@ export default function Hamburger({
   onToggle,
   isLightMode,
 }: HamburgerProps) {
-  const uid = useId()
-  const inputId = `nav-toggle-${uid}`
-
   const variantClass = isLightMode
     ? styles.light
     : styles.dark
 
   return (
-    <div className={styles.wrapper}>
-      <input
-        id={inputId}
-        type="checkbox"
-        checked={isOpen}
-        onChange={onToggle}
-        className={styles.input}
-      />
-
-      <label htmlFor={inputId} className={styles.label}>
-        <div className={`${styles.lines} ${variantClass}`}>
-          <span />
-          <span />
-          <span />
-        </div>
-      </label>
-    </div>
+    <button
+      onClick={onToggle}
+      className={styles.wrapper}
+      aria-label="Toggle Menu"
+    >
+      <div
+        className={`${styles.lines} ${variantClass} ${
+          isOpen ? styles.open : ''
+        }`}
+      >
+        <span />
+        <span />
+        <span />
+      </div>
+    </button>
   )
 }

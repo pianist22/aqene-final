@@ -293,6 +293,7 @@
 // }
 
 
+
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
@@ -462,7 +463,7 @@ export default function MenuOverlay({ onClose }: MenuOverlayProps) {
                   src={activeItem.image}
                   alt={activeItem.label}
                   fill
-                  priority
+                  sizes="50vw"
                   className="object-cover"
                 />
               </motion.div>
