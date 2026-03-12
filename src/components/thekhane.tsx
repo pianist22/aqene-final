@@ -87,13 +87,116 @@
 // }
 
 
+// "use client";
+
+// const FOUNDERS = [
+//   {
+//     name: "SANDEEP",
+//     role: "Principal – Design",
+//     image: "/founders/founder2.png",
+//   },
+// ];
+
+// export default function TheKhaaneeSection() {
+//   return (
+//     <section className="w-full bg-[#f4f4f5] text-[#2f2a25]">
+//       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-28 lg:py-32">
+
+//         {/* SECTION HEADING */}
+//         <div className="mb-10 font-futura">
+//           <h2 className="text-3xl sm:text-4xl lg:text-5xl  font-light tracking-[0.12em] uppercase leading-[1.05]">
+//             The <span className="text-[#c1171a]">क</span>haanee
+//           </h2>
+//         </div>
+
+//         {/* MAIN GRID */}
+//         <div className="grid lg:grid-cols-[420px_minmax(0,1fr)] gap-14 lg:gap-20 items-start">
+
+//           {/* LEFT — Founder */}
+//           <div className="space-y-6">
+
+//             {FOUNDERS.map((founder) => (
+//               <div key={founder.name}>
+
+//                 <div className="overflow-hidden rounded-3xl bg-[#d4d4d8]">
+//                   <img
+//                     src={founder.image}
+//                     alt={founder.name}
+//                     className="w-full h-[420px] object-cover hover:grayscale-0 transition duration-500"
+//                   />
+//                 </div>
+
+//                 <div className="mt-5">
+//                   <p className="text-sm tracking-[0.15em] uppercase font-medium">
+//                     {founder.name}
+//                   </p>
+
+//                   <p className="text-xs uppercase tracking-[0.18em] text-[#6b6458] mt-1">
+//                     {founder.role}
+//                   </p>
+//                 </div>
+
+//               </div>
+//             ))}
+
+//           </div>
+
+//           {/* RIGHT — STORY */}
+//           <div className="font-futura max-w-2xl">
+
+//             <div className="space-y-6 text-[18px] leading-[1.9] text-[#5f5a50]">
+
+//               <p>
+//                 We didn't begin with ambition. We began with immaturity,
+//                 naivety, and some conviction.
+//               </p>
+
+//               <p>
+//                 We made a choice: craft over speed. Integrity over scale.
+//                 Design indigenization. Value addition with profit. That
+//                 choice became principle. Principle became practice.
+//                 Practice became reputation.
+//               </p>
+
+//               <p>
+//                 Today, we partner with India's architectural visionaries
+//                 on prestige commissions—not because we grew large, but
+//                 because we stayed true. Every piece we create carries that
+//                 one original intent: furniture built not to impress for a
+//                 season, but to be patrimonial.
+//               </p>
+
+//               <p>
+//                 This isn't a business story. It's the story of our craft.
+//                 And it continues—one commission, one partnership,
+//                 one heirloom at a time.
+//               </p>
+
+//             </div>
+
+//             {/* SIGNATURE */}
+//             <div className="mt-12">
+//               <p className="text-sm uppercase tracking-[0.3em] text-[#6b6458]">
+//                 — Sandeep
+//               </p>
+//             </div>
+
+//           </div>
+
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 "use client";
 
-const FOUNDERS = [
+type Founder = {
+  image: string;
+};
+
+const FOUNDERS: Founder[] = [
   {
-    name: "SANDEEP",
-    role: "Principal – Design",
-    image: "/founders/founder2.jpeg",
+    image: "/founders/founder2.png",
   },
 ];
 
@@ -104,7 +207,7 @@ export default function TheKhaaneeSection() {
 
         {/* SECTION HEADING */}
         <div className="mb-10 font-futura">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl  font-light tracking-[0.12em] uppercase leading-[1.05]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-[0.12em] uppercase leading-[1.05]">
             The <span className="text-[#c1171a]">क</span>haanee
           </h2>
         </div>
@@ -112,33 +215,16 @@ export default function TheKhaaneeSection() {
         {/* MAIN GRID */}
         <div className="grid lg:grid-cols-[420px_minmax(0,1fr)] gap-14 lg:gap-20 items-start">
 
-          {/* LEFT — Founder */}
-          <div className="space-y-6">
-
-            {FOUNDERS.map((founder) => (
-              <div key={founder.name}>
-
-                <div className="overflow-hidden rounded-3xl bg-[#d4d4d8]">
-                  <img
-                    src={founder.image}
-                    alt={founder.name}
-                    className="w-full h-[420px] object-cover hover:grayscale-0 transition duration-500"
-                  />
-                </div>
-
-                <div className="mt-5">
-                  <p className="text-sm tracking-[0.15em] uppercase font-medium">
-                    {founder.name}
-                  </p>
-
-                  <p className="text-xs uppercase tracking-[0.18em] text-[#6b6458] mt-1">
-                    {founder.role}
-                  </p>
-                </div>
-
-              </div>
+          {/* LEFT — Founder Image */}
+          <div>
+            {FOUNDERS.map((founder, index) => (
+              <img
+                key={index}
+                src={founder.image}
+                alt="Founder"
+                className="w-[260px] md:w-[320px] h-auto"
+              />
             ))}
-
           </div>
 
           {/* RIGHT — STORY */}
@@ -167,18 +253,21 @@ export default function TheKhaaneeSection() {
               </p>
 
               <p>
-                This isn't a business story. It's the story of our craft.
+                This isn't a business story. <br />
+                It's the story of our craft.<br />
                 And it continues—one commission, one partnership,
                 one heirloom at a time.
               </p>
 
             </div>
 
-            {/* SIGNATURE */}
+            {/* SIGNATURE IMAGE */}
             <div className="mt-12">
-              <p className="text-sm uppercase tracking-[0.3em] text-[#6b6458]">
-                — Sandeep
-              </p>
+              <img
+                src="/founders/signature.png"
+                alt="Signature"
+                className="h-10 w-auto"
+              />
             </div>
 
           </div>
