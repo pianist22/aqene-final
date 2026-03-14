@@ -202,7 +202,7 @@ export default function ProjectsSection() {
       const data = await Promise.all(
         productSections.map(async (section) => {
           const res = await axios.get(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/imagekit/list`,
+            `/api/imagekit/list`,
             {
               params: {
                 folder: `/${section.folder}`,
