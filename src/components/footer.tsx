@@ -59,7 +59,11 @@ export default function Footer() {
     A Client Advisor is available at{" "}
     <a href="tel:+917017557216" className="underline">
       +91 7017557216
-    </a>.
+    </a>
+    /{" "}
+    <a href="tel:+918130287842" className="underline">
+      +91 8130287842
+    </a>
   </p>
 
   <p>
